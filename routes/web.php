@@ -1,13 +1,17 @@
 <?php
 
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
-Route::get("/", function () {
-    return view("home", ["name" => "Erminov"]);
-})->name("home");
-Route::get("/shop", function () {
-    return view("shop");
-})->name("shop");
+Route::get("/", [HomeController::class, "index"])->name("home");
+//Shop routes
+Route::get("/shop", [ShopController::class, "index"])->name("shop");
+
+//Contact routes
+Route::get("/contact", [ContactController::class, "index"])->name("contact");
+
+
 
 Route::view("/about", "about")->name("about");
-Route::view("/contact", "contact")->name("contact");
