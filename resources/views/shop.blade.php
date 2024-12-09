@@ -1,4 +1,6 @@
-@include('partials\header')
+@extends("layout")
+@section("title", "Shop")
+@section("content")
 
 
 <h3 class="font-bold">Shop</h3>
@@ -44,4 +46,4 @@
 </section>
 
 
-@include('partials\footer')
+@endsection
