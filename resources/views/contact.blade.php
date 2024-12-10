@@ -2,22 +2,32 @@
 @section("title", "Kontakt")
 @section("content")
 
-
-<h3 class="font-bold">Kontakt forma</h3>
+    <a href="{{route('admin.contacts')}}" class="rounded bg-gray-500 text-white p-2"> Svi dosadašnji kontakti</a>
+<h3 class="font-bold mt-4">Kontakt forma</h3>
 <h3>Jednostavna kontakt forma</h3>
 
 <div class="wrapper flex flex-wrap gap-4 justify-center items-center">
     <div id="forma" class="w-[400px]">
-        <form action="" class="p-2 bg-gray-100 flex flex-col gap-3">
 
-            <label for="name">Ime</label>
-            <input type="text" name="name" id="name">
+        @if($errors->any())
+            @foreach($errors->all() as $error)
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                    <strong class="font-bold">Greska!</strong>
+                    <span class="block sm:inline">{{ $error }}</span>
+                </div>
+            @endforeach
+        @endif
 
-            <label for="email">Subject</label>
-            <input type="text" name="subject" id="email">
+        <form action="{{route('contact.send')}}" method="POST" class="p-2 bg-gray-100 flex flex-col gap-3">
+            @csrf
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Unesite email" class="p-2 rounded">
+
+            <label for="subject">Subject</label>
+            <input type="text" name="subject" id="subject" placeholder="Unesite subject" class="p-2 rounded">
 
             <label for="message">Poruka</label>
-            <textarea name="message" id="message" cols="30" rows="10"></textarea>
+            <textarea name="message" id="message" cols="30" rows="10" placeholder="Unesite poruku" class="p-2 rounded"></textarea>
 
             <input class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded pointer" type="submit" value="Pošalji">
         </form>
