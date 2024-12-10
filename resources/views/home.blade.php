@@ -11,9 +11,22 @@
     @endif
 
     <h3>Dobro došli na prvi Laravel projekat</h3>
-    <br>
+    {{--<br>
     <p>Trenutno je {{$hour}}h. </p>
-    <p>Trenutno vrijeme je {{$dateNow}}</p>
+    <p>Trenutno vrijeme je {{$dateNow}}</p>--}}
 
+    @if(isset($products))
+        <h3 class="mt-4 font-bold">Poslednjih {{$products->count()}} proizvoda</h3>
+
+        <section class="text-gray-600 body-font">
+            <div class="container px-3 py-10 mx-auto">
+                <div class="flex flex-wrap -m-6 ">
+
+                    @include("components.productitem")
+
+                </div>
+            </div>
+        </section>
+    @endif
 
 @endsection

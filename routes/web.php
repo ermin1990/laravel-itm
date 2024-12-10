@@ -12,6 +12,6 @@ Route::get("/shop", [ShopController::class, "index"])->name("shop");
 //Contact routes
 Route::get("/contact", [ContactController::class, "index"])->name("contact");
 
-
+Route::get("admin/allcontacts", [ContactController::class, "allContacts"])->name("admin.allcontacts");
 
 Route::view("/about", "about")->name("about");
