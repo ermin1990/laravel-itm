@@ -1,11 +1,37 @@
 @if(isset($contacts))
-    <h3 class="font-bold">Svi kontakti</h3>
-    @foreach($contacts as $contact)
-        <div class=" my-5 text-xl p-4 bg-gray-200">
-            <p class=" font-bold">{{$contact->email}}</p>
-            <p class=" text-gray-500 uppercase">{{$contact->subject}}</p>
-            <p class=" text-gray-500 text-lg p-2 border-2 bg-white rounded">{{$contact->message}}</p>
-        </div>
-    @endforeach
-
+    <h3 class="font-bold text-2xl mb-4">Svi kontakti</h3>
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+            <thead>
+            <tr class="bg-gray-100">
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-600 border-b">Email</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-600 border-b">Predmet</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-600 border-b">Poruka</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-600 border-b text-right">Akcije</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($contacts as $contact)
+                <tr class="hover:bg-gray-50">
+                    <td class="px-4 py-2 text-sm text-gray-700 border-b">{{ $contact->email }}</td>
+                    <td class="px-4 py-2 text-sm text-gray-700 border-b">{{ $contact->subject }}</td>
+                    <td class="px-4 py-2 text-sm text-gray-700 border-b">{{ $contact->message }}</td>
+                    <td class="px-4 py-2 text-sm text-gray-700 border-b text-right">
+                        <button class="p-1 text-black hover:bg-blue-300 transition:ease-in-out duration-300 rounded">
+                            Pregledaj
+                        </button>
+                        <button class="p-1 text-black hover:bg-yellow-300 transition:ease-in-out duration-300 rounded">
+                            Uredi
+                        </button>
+                        <button class="p-1 text-black hover:bg-red-300 transition:ease-in-out duration-300 rounded">
+                            Izbriši
+                        </button>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+@else
+    <p class="text-gray-500">Nema dostupnih kontakata.</p>
 @endif
