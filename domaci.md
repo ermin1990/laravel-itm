@@ -15,5 +15,5 @@
 
 
 //DOMAĆI 8
-[6] Edit forma za update proizvoda
-[7] Edit forma za update kontakata
+[6] Edit forma za update proizvoda ✅
+[7] Edit forma za update kontakata ✅

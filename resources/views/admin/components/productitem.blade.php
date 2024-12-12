@@ -18,7 +18,7 @@
         <tbody>
         @foreach($products as $product)
             <tr class="hover:bg-gray-50">
-                <td class="px-2 py-4 text-sm text-gray-700 border-b">{{$product->name}}</td>
+                <td class="px-2 py-4 text-sm text-gray-700 border-b">{{$product->name }}</td>
                 <td class="px-2 py-4 text-sm text-gray-700 border-b">{{$product->price}}</td>
                 <td class="px-2 py-4 text-sm text-gray-700 border-b">{{$product->amount}}</td>
                 <td class="px-2 py-4 text-sm text-gray-700 border-b text-right">

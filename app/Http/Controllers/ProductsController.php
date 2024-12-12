@@ -12,10 +12,13 @@ class ProductsController extends Controller
      */
     public function index()
     {
+        try {
+            $products = ProductModel::all();
+            return view('admin.products', compact("products"));
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("error", "Nema proizvoda");
+        }
 
-        $products = ProductModel::all();
-
-        return view("admin.products", compact("products"));
     }
 
     /**
@@ -65,10 +68,9 @@ class ProductsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($product)
+    public function edit(ProductModel $product)
     {
         try {
-            $product = ProductModel::where("id", $product)->first();
             return view("admin.products.edit-product", compact("product"));
         }catch (\Throwable $th) {
             return redirect()->back()->with("error", "Nema proizvoda");
@@ -79,7 +81,7 @@ class ProductsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $product)
+    public function update(Request $request, ProductModel $product)
     {
 
         $request->validate([
@@ -91,7 +93,6 @@ class ProductsController extends Controller
         ]);
 
         try {
-            $product = ProductModel::where("id", $product)->first();
             $product ->update([
                 "name" => $request->name,
                 "description" => $request->description,
@@ -99,9 +100,9 @@ class ProductsController extends Controller
                 "image" => $request->image,
                 "amount" => $request->amount
             ]);
-            return redirect()->route('admin.products')->with("success", "Proizvod je azuriran");
+            return redirect()->route('admin.products')->with("success", "Proizvod je ažuriran");
         } catch (\Throwable $th) {
-            $errors = "Nemoguće azurirati proizvod";
+            $errors = "Nemoguće ažurirati proizvod";
             return redirect()->back()->withErrors($errors)->withInput([
                 "name" => $request->name,
                 "description" => $request->description,
@@ -115,11 +116,10 @@ class ProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function deleteProduct($product)
+    public function deleteProduct(ProductModel $product)
     {
 
         try {
-            $product = ProductModel::where("id", $product)->first();
             $product->delete();
             return redirect()->back()->with("success", "Proizvod je obrisan");
         } catch (\Throwable $th) {
