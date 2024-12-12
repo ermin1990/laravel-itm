@@ -2,6 +2,8 @@
 @section("title", "Dodaj proizvod")
 @section("content")
 
+    @include("partials.status")
+
     <div class="max-w-lg mx-auto mt-10  p-8 rounded-lg ">
         <h3 class="text-2xl font-bold text-gray-700 mb-5">Dodaj proizvod</h3>
 
@@ -9,7 +11,6 @@
             @csrf
             <!-- Naziv proizvoda -->
             <div>
-                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Naziv proizvoda</label>
                 <input
                     type="text"
                     name="name"
@@ -25,7 +26,6 @@
 
             <!-- Opis proizvoda -->
             <div>
-                <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Opis proizvoda</label>
                 <textarea
                     name="description"
                     id="description"
@@ -39,9 +39,8 @@
 
             <!-- Cijena proizvoda -->
             <div>
-                <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Cijena proizvoda</label>
                 <input
-                    type="text"
+                    type="number"
                     name="price"
                     id="price"
                     value="{{old('price')}}"
@@ -55,7 +54,6 @@
 
             <!-- Slobodna mjesta -->
             <div>
-                <label for="amount" class="block text-sm font-medium text-gray-700 mb-1">Dostupno mjesta</label>
                 <input
                     type="number"
                     name="amount"
@@ -71,7 +69,6 @@
 
             <!-- Link za sliku -->
             <div>
-                <label for="image" class="block text-sm font-medium text-gray-700 mb-1">Link za sliku proizvoda</label>
                 <input
                     type="text"
                     name="image"

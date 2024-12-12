@@ -5,11 +5,7 @@
     <h3> Svi proizvodi</h3>
 
     @if(isset($products))
-        @if(isset($errors))
-            @foreach($errors->all() as $error)
-                <p class="text-red-500">{{$error}}</p>
-            @endforeach
-        @endif
+        @include('partials.status')
         @include("admin.components.productitem")
     @endif
 

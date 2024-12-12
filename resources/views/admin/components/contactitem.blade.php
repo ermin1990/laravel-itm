@@ -1,3 +1,5 @@
+@include('partials.status')
+
 @if(isset($contacts))
     <h3 class="font-bold text-2xl mb-4">Svi kontakti</h3>
     <div class="overflow-x-auto">
@@ -17,15 +19,16 @@
                     <td class="px-4 py-2 text-sm text-gray-700 border-b">{{ $contact->subject }}</td>
                     <td class="px-4 py-2 text-sm text-gray-700 border-b">{{ $contact->message }}</td>
                     <td class="px-4 py-2 text-sm text-gray-700 border-b text-right">
-                        <button class="p-1 text-black hover:bg-blue-300 transition:ease-in-out duration-300 rounded">
+                        <a class="p-1 text-black hover:bg-blue-300 transition:ease-in-out duration-300 rounded">
                             Pregledaj
-                        </button>
-                        <button class="p-1 text-black hover:bg-yellow-300 transition:ease-in-out duration-300 rounded">
-                            Uredi
-                        </button>
-                        <button class="p-1 text-black hover:bg-red-300 transition:ease-in-out duration-300 rounded">
+                        </a>
+                        <a href="{{route("admin.editcontact", $contact->id)}}" class="p-1 text-black hover:bg-yellow-300 transition:ease-in-out duration-300 rounded">
+                            Edit
+                        </a>
+                        <a href="{{route("admin.deletecontact", $contact->id)}}"
+                            class="p-1 text-black hover:bg-red-300 transition:ease-in-out duration-300 rounded">
                             Izbriši
-                        </button>
+                        </a>
                     </td>
                 </tr>
             @endforeach
