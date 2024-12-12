@@ -13,17 +13,9 @@ class ContactController extends Controller
     }
 
     public function allContacts(){
-
-        $contacts = ContactModel::all();
-        $compact = [
-            "contacts" => $contacts
-        ];
-
-
-        return view('admin.contacts.allcontacts', $compact);
+            $contacts = ContactModel::all();
+            return view('admin.contacts.allcontacts', compact('contacts'));
     }
-
-
     public function sendContact(Request $request)
     {
         $request->validate([
@@ -39,11 +31,9 @@ class ContactController extends Controller
         ]);
         return redirect()->route('contact')->with("success", "Poruka je poslata");
     }
-
-    public function delete($contact)
+    public function delete(ContactModel$contact)
     {
         try {
-            $contact = ContactModel::where("id", $contact)->first();
             $contact->delete();
             return redirect()->back()->with("success", "Kontakt je obrisan");
         }catch (\Throwable $th) {
@@ -51,12 +41,9 @@ class ContactController extends Controller
             return redirect()->back()->withErrors($errors);
         }
     }
-
-
-    public function edit($contact){
+    public function edit(ContactModel $contact){
 
         try{
-            $contact = ContactModel::where("id", $contact)->first();
             return view("admin.contacts.edit-contacts", compact("contact"));
         }
         catch(\Throwable $th){
@@ -64,16 +51,13 @@ class ContactController extends Controller
             return redirect()->back()->withErrors($errors);
         }
     }
-
-
-    public function update(Request $request, $contact)
+    public function update(Request $request, ContactModel $contact)
     {
         $request->validate([
             'email' => 'required|email|string',
             'subject' => 'required|string',
             'message' => 'required|string|min:5',
         ]);
-        $contact = ContactModel::where("id", $contact)->first();
         $contact ->update([
             "email"=>$request['email'],
             "subject"=>$request['subject'],
