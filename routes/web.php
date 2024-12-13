@@ -5,9 +5,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShopController;
+use App\Http\Middleware\AdminCheckMiddleware;
 use Illuminate\Support\Facades\Route;
 
-//Route::get('/', function () {return view('welcome');});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -30,7 +30,8 @@ Route::get("/contact", [ContactController::class, "index"])->name("contact");
 Route::post("send-contact", [ContactController::class, "sendContact"])->name("contact.send");
 
 
-Route::middleware("auth")->prefix("admin")->group(function () {
+//Admin routes
+Route::middleware(["auth", AdminCheckMiddleware::class])->prefix("admin")->group(function () {
     //Contact routes
     Route::get("contacts", [ContactController::class, "allContacts"])->name("admin.contacts");
     Route::get("delete-contact/{contact}", [ContactController::class, "delete"])->name("admin.deletecontact");
@@ -45,26 +46,6 @@ Route::middleware("auth")->prefix("admin")->group(function () {
     Route::get("edit-product/{product}", [ProductsController::class, "edit"])->name("admin.editproduct");
     Route::post("update-product/{product}", [ProductsController::class, "update"])->name("admin.updateproduct");
 })->name("admin");
-
-
-//Admin routes
-Route::group(["prefix" => "admin"], function () {
-
-    //Contact routes
-    Route::get("contacts", [ContactController::class, "allContacts"])->name("admin.contacts");
-    Route::get("delete-contact/{contact}", [ContactController::class, "delete"])->name("admin.deletecontact");
-    Route::get("edit-contact/{contact}", [ContactController::class, "edit"])->name("admin.editcontact");
-    Route::post("update-contact/{contact}", [ContactController::class, "update"])->name("admin.updatecontact");
-
-    //Product routes
-    Route::get("products", [ProductsController::class, "index"])->name("admin.products");
-    Route::get("add-product", [ProductsController::class, "create"])->name("admin.addproduct");
-    Route::post("save-product", [ProductsController::class, "store"])->name("admin.saveproduct");
-    Route::get("delete-product/{product}", [ProductsController::class, "deleteProduct"])->name("admin.deleteproduct");
-    Route::get("edit-product/{product}", [ProductsController::class, "edit"])->name("admin.editproduct");
-    Route::post("update-product/{product}", [ProductsController::class, "update"])->name("admin.updateproduct");
-})->middleware(["auth"])
-    ->name("admin.");
 
 
 //About routes
