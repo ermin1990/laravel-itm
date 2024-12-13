@@ -30,6 +30,23 @@ Route::get("/contact", [ContactController::class, "index"])->name("contact");
 Route::post("send-contact", [ContactController::class, "sendContact"])->name("contact.send");
 
 
+Route::middleware("auth")->prefix("admin")->group(function () {
+    //Contact routes
+    Route::get("contacts", [ContactController::class, "allContacts"])->name("admin.contacts");
+    Route::get("delete-contact/{contact}", [ContactController::class, "delete"])->name("admin.deletecontact");
+    Route::get("edit-contact/{contact}", [ContactController::class, "edit"])->name("admin.editcontact");
+    Route::post("update-contact/{contact}", [ContactController::class, "update"])->name("admin.updatecontact");
+
+    //Product routes
+    Route::get("products", [ProductsController::class, "index"])->name("admin.products");
+    Route::get("add-product", [ProductsController::class, "create"])->name("admin.addproduct");
+    Route::post("save-product", [ProductsController::class, "store"])->name("admin.saveproduct");
+    Route::get("delete-product/{product}", [ProductsController::class, "deleteProduct"])->name("admin.deleteproduct");
+    Route::get("edit-product/{product}", [ProductsController::class, "edit"])->name("admin.editproduct");
+    Route::post("update-product/{product}", [ProductsController::class, "update"])->name("admin.updateproduct");
+})->name("admin");
+
+
 //Admin routes
 Route::group(["prefix" => "admin"], function () {
 
@@ -46,11 +63,11 @@ Route::group(["prefix" => "admin"], function () {
     Route::get("delete-product/{product}", [ProductsController::class, "deleteProduct"])->name("admin.deleteproduct");
     Route::get("edit-product/{product}", [ProductsController::class, "edit"])->name("admin.editproduct");
     Route::post("update-product/{product}", [ProductsController::class, "update"])->name("admin.updateproduct");
-})->middleware(["auth", "verified"])->name("admin.");
-
+})->middleware(["auth"])
+    ->name("admin.");
 
 
 //About routes
 Route::view("/about", "about")->name("about");
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
