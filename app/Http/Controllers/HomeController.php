@@ -11,14 +11,14 @@ class HomeController extends Controller
     {
 
         $products = ProductModel::orderBy('id', 'desc')->get()->take(6);
-
+        $user = auth()->user();
 
         $hour = date('H');
         $dateNow = date('d-m-Y H:i:s');
         $compact = [
             "dateNow" => $dateNow,
-            "name" => "Ermin",
             "hour" => $hour,
+            "user"=>$user,
             "products" => $products
         ];
 
