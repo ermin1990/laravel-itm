@@ -123,8 +123,7 @@ class ProductsController extends Controller
             $product->delete();
             return redirect()->back()->with("success", "Proizvod je obrisan");
         } catch (\Throwable $th) {
-            $errors = "Nemoguće brisati proizvod";
-            return redirect()->back()->withErrors($errors);
+            return redirect()->back()->withErrors('errors',"Nemoguće brisati proizvod");
         }
     }
 }
