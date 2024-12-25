@@ -29,7 +29,7 @@ class MakeRepository extends Command
     public function handle()
     {
         $name = $this->argument('name');
-        $directory = app_path('Repository');
+        $directory = app_path('Repositories');
         $filePath = $directory . '/' . $name . '.php';
 
         $filesystem = new Filesystem;
@@ -64,7 +64,7 @@ class MakeRepository extends Command
         return <<<PHP
 <?php
 
-namespace App\Repository;
+namespace App\Repositories;
 
 class {$name}
 {
