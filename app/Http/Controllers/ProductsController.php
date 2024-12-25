@@ -44,7 +44,7 @@ class ProductsController extends Controller
     public function edit($product)
     {
         try {
-            $product = $this->productRepository->getProductById($product);
+            $this->productRepository->getProductById($product);
             return view("admin.products.edit-product", compact("product"));
         } catch (\Throwable $th) {
             return redirect()->back()->with("error", "Nema proizvoda");
@@ -74,7 +74,6 @@ class ProductsController extends Controller
     public function deleteProduct($product)
     {
         $prod = $this->productRepository->getProductById($product);
-
         if ($prod == null) {
             return redirect()->back()->with("error", "Proizvod ne postoji u bazi");
         }
