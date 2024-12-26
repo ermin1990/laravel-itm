@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SaveProductRequest;
+use App\Models\ProductModel;
 use App\Repositories\ProductRepository;
 
 class ProductsController extends Controller
@@ -83,5 +84,11 @@ class ProductsController extends Controller
         }
         return redirect()->route('products.all')->with("success", "Proizvod je obrisan");
 
+    }
+
+    public function show(ProductModel $product)
+    {
+
+        return view("permalink", compact("product"));
     }
 }

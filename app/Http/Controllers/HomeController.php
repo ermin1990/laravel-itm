@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ProductModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -12,12 +13,13 @@ class HomeController extends Controller
 
         $products = ProductModel::orderBy('id', 'desc')->get()->take(6);
 
+        Session::forget('products');
 
         $hour = date('H');
         $dateNow = date('d-m-Y H:i:s');
         $compact = [
             "dateNow" => $dateNow,
-            "name" => "Ermin",
+            "name" => Session::get("ime"),
             "hour" => $hour,
             "products" => $products
         ];

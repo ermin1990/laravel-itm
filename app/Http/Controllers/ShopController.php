@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductModel;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ShopController extends Controller
 {
     public function index()
     {
+
         try {
             $products = ProductModel::all();
             return view('shop', compact("products"));

@@ -1,6 +1,11 @@
-@foreach($products as $product)
+@extends("layout")
+@section("title", $product->name)
+@section("content")
+
+    @if(isset($product))
     <div class="p-2 w-full md:w-1/3 ">
         <div class="h-full bg-gray-200 p-6 rounded-lg hover:bg-gray-300">
+            <img class="h-70 rounded w-full object-cover object-center mb-6" src="{{$product->image}}" alt="content">
 
             <h3 class="text-lg text-gray-900 font-medium mb-2">{{$product->name}}
                 @if($product->name == "PHP" || $product->name == "Laravel")
@@ -11,7 +16,14 @@
 
             <p class=" text-gray-500 text-right mt-2">Na stanju: <span class=" bg-green-500 text-white p-1 rounded">{{$product->amount}}</span></p>
 
-            <a class="font-bold text-indigo-500 bg-white px-2 py-1 rounded" href="{{ route("product", $product)}}">Opširnije</a>
+
+
+    @else
+        <div class="p-2 w-full md:w-1/3 ">
+            <div class="h-full bg-gray-200 p-6 rounded-lg hover:bg-gray-300">
+                <h3>Ne postoji proizvod</h3>
+            </div>
         </div>
-    </div>
-@endforeach
+    @endif
+
+@endsection

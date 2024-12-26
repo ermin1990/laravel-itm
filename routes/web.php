@@ -11,6 +11,8 @@ Route::get("/", [HomeController::class, "index"])->name("home");
 //Shop routes
 Route::get("/shop", [ShopController::class, "index"])->name("shop");
 
+Route::get("/product/{product}", [ProductsController::class, "show"])->name("product");
+
 //Contact routes
 Route::controller(ContactController::class)->prefix("/contact")->group(function () {
     Route::get("/", "index")->name("contact");
