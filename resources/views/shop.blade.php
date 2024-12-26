@@ -8,8 +8,8 @@
 <section class="bg-gray-500 p-5 my-5 rounded">
     <h1 class="text-3xl text-white font-weight-light">Admin</h1>
     <ul class="flex my-3 gap-3 text-white">
-        <a class=" rounded bg-gray-700 text-white p-2 hover:bg-gray-200 hover:text-black transition:ease-in-out duration-700" href="{{route("addproduct")}}">Dodaj proizvod</a>
-        <a class=" rounded bg-gray-700 text-white p-2 hover:bg-gray-200 hover:text-black transition:ease-in-out duration-700" href="{{route("products")}}">Svi proizvodi</a>
+        <a class=" rounded bg-gray-700 text-white p-2 hover:bg-gray-200 hover:text-black transition:ease-in-out duration-700" href="{{route("products.addproduct")}}">Dodaj proizvod</a>
+        <a class=" rounded bg-gray-700 text-white p-2 hover:bg-gray-200 hover:text-black transition:ease-in-out duration-700" href="{{route("products.all")}}">Svi proizvodi</a>
     </ul>
 </section>
 

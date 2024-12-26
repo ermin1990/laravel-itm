@@ -2,7 +2,7 @@
 @section("title", "Kontakt")
 @section("content")
 
-    <a href="{{route('allcontacts')}}" class="rounded bg-gray-500 text-white p-2"> Svi dosadašnji kontakti</a>
+    <a href="{{route('contact.allcontacts')}}" class="rounded bg-gray-500 text-white p-2"> Svi dosadašnji kontakti</a>
 <h3 class="font-bold mt-4">Kontakt forma</h3>
 <h3>Jednostavna kontakt forma</h3>
 

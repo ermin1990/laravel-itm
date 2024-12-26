@@ -12,9 +12,9 @@ Route::get("/", [HomeController::class, "index"])->name("home");
 Route::get("/shop", [ShopController::class, "index"])->name("shop");
 
 //Contact routes
-Route::controller(ContactController::class)->group(function () {
-    Route::get("/contact", "index")->name("contact");
-    Route::post("/send-contact", "sendContact")->name("contact.send");
+Route::controller(ContactController::class)->prefix("/contact")->group(function () {
+    Route::get("/", "index")->name("contact");
+    Route::post("/send", "sendContact")->name("contact.send");
 });
 
 
@@ -22,17 +22,17 @@ Route::controller(ContactController::class)->group(function () {
 Route::group(["prefix" => "admin"], function () {
 
     //Contact routes
-    Route::controller(ContactController::class)->prefix("/contact")->group(function () {
+    Route::controller(ContactController::class)->prefix("/contact")->name("contact.")->group(function () {
         Route::get("/all", "allContacts")->name("allcontacts");
-        Route::get("/delete/{contact}", "delete")->name("deletecontact");
-        Route::get("/edit/{contact}", "edit")->name("editcontact");
-        Route::post("/update/{contact}", "update")->name("updatecontact");
+        Route::get("/delete/{contact}", "delete")->name("delete");
+        Route::get("/edit/{contact}", "edit")->name("edit");
+        Route::post("/update/{contact}", "update")->name("update");
     });
 
 
     //Product routes
-    Route::controller(ProductsController::class)->prefix("/products")->group(function () {
-        Route::get("/all", "index")->name("products");
+    Route::controller(ProductsController::class)->prefix("/products")->name("products.")->group(function () {
+        Route::get("/all", "index")->name("all");
         Route::get("/add", "create")->name("addproduct");
         Route::get("/delete/{product}", "deleteProduct")->name("deleteproduct");
         Route::get("/edit/{product}", "edit")->name("editproduct");

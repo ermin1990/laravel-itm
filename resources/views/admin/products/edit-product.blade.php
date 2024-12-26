@@ -8,7 +8,7 @@
         <h3 class="text-2xl font-bold text-gray-700 mb-5">Uredi proizvod</h3>
 
         @if($product)
-            <form action="{{route("updateproduct", $product->id)}}" method="post" class="flex flex-col gap-4">
+            <form action="{{route("products.updateproduct", $product->id)}}" method="post" class="flex flex-col gap-4">
                 @csrf
                 <!-- Naziv proizvoda -->
                 <div>

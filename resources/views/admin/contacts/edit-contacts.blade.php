@@ -8,7 +8,7 @@
 
     @if($contact)
 
-    <form action="{{route('updatecontact', $contact->id)}}" method="POST" class="p-2 bg-gray-100 flex flex-col gap-3">
+    <form action="{{route('contact.update', $contact->id)}}" method="POST" class="p-2 bg-gray-100 flex flex-col gap-3">
         @csrf
         <label for="email">Email</label>
         <input type="email" name="email" id="email" placeholder="Unesite email" value="{{old('email', $contact->email)}}" class="p-2 rounded">

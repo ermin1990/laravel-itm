@@ -64,6 +64,6 @@ class ContactController extends Controller
     public function update(SaveContactRequest $request, $contact)
     {
         $this->contactRepository->updateContact($request,$contact);
-        return redirect()->route('allcontacts');
+        return redirect()->route('contact.allcontacts');
     }
 }

@@ -22,10 +22,10 @@
                         <a class="p-1 text-black hover:bg-blue-300 transition:ease-in-out duration-300 rounded">
                             Pregledaj
                         </a>
-                        <a href="{{route("editcontact", $contact->id)}}" class="p-1 text-black hover:bg-yellow-300 transition:ease-in-out duration-300 rounded">
+                        <a href="{{route("contact.edit", $contact->id)}}" class="p-1 text-black hover:bg-yellow-300 transition:ease-in-out duration-300 rounded">
                             Edit
                         </a>
-                        <a href="{{route("deletecontact", $contact->id)}}"
+                        <a href="{{route("contact.delete", $contact->id)}}"
                             class="p-1 text-black hover:bg-red-300 transition:ease-in-out duration-300 rounded">
                             Izbriši
                         </a>
