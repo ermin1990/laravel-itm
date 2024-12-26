@@ -22,22 +22,22 @@ Route::controller(ContactController::class)->group(function () {
 Route::group(["prefix" => "admin"], function () {
 
     //Contact routes
-    Route::controller(ContactController::class)->group(function () {
-        Route::get("/contact/all", "allContacts")->name("allcontacts");
-        Route::get("/contact/delete/{contact}", "delete")->name("deletecontact");
-        Route::get("/contact/edit/{contact}", "edit")->name("editcontact");
-        Route::post("/contact/update/{contact}", "update")->name("updatecontact");
+    Route::controller(ContactController::class)->prefix("/contact")->group(function () {
+        Route::get("/all", "allContacts")->name("allcontacts");
+        Route::get("/delete/{contact}", "delete")->name("deletecontact");
+        Route::get("/edit/{contact}", "edit")->name("editcontact");
+        Route::post("/update/{contact}", "update")->name("updatecontact");
     });
 
 
     //Product routes
-    Route::controller(ProductsController::class)->group(function () {
-        Route::get("/products/all", "index")->name("admin.products");
-        Route::get("/products/add", "create")->name("admin.addproduct");
-        Route::post("/products/save", "store")->name("admin.saveproduct");
-        Route::get("/products/delete/{product}", "deleteProduct")->name("admin.deleteproduct");
-        Route::get("/products/edit/{product}", "edit")->name("admin.editproduct");
-        Route::post("/products/update/{product}", "update")->name("admin.updateproduct");
+    Route::controller(ProductsController::class)->prefix("/products")->group(function () {
+        Route::get("/all", "index")->name("admin.products");
+        Route::get("/add", "create")->name("admin.addproduct");
+        Route::get("/delete/{product}", "deleteProduct")->name("admin.deleteproduct");
+        Route::get("/edit/{product}", "edit")->name("admin.editproduct");
+        Route::post("/save", "store")->name("admin.saveproduct");
+        Route::post("/update/{product}", "update")->name("admin.updateproduct");
     });
 });
 

@@ -44,7 +44,7 @@ class ProductsController extends Controller
     public function edit($product)
     {
         try {
-            $this->productRepository->getProductById($product);
+            $product = $this->productRepository->getProductById($product);
             return view("admin.products.edit-product", compact("product"));
         } catch (\Throwable $th) {
             return redirect()->back()->with("error", "Nema proizvoda");
