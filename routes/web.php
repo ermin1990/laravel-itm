@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductsController;
@@ -19,6 +20,9 @@ Route::controller(ContactController::class)->prefix("/contact")->group(function 
     Route::post("/send", "sendContact")->name("contact.send");
 });
 
+Route::controller(CartController::class)->prefix("/cart")->name("cart.")->group(function () {
+    Route::post("/add", "addToCart")->name("add");
+});
 
 //Admin routes
 Route::group(["prefix" => "admin"], function () {
@@ -40,6 +44,8 @@ Route::group(["prefix" => "admin"], function () {
         Route::get("/edit/{product}", "edit")->name("editproduct");
         Route::post("/save", "store")->name("saveproduct");
         Route::post("/update/{product}", "update")->name("updateproduct");
+
+
     });
 });
 

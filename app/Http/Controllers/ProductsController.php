@@ -91,4 +91,6 @@ class ProductsController extends Controller
 
         return view("permalink", compact("product"));
     }
+
+
 }
