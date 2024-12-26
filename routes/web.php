@@ -32,12 +32,12 @@ Route::group(["prefix" => "admin"], function () {
 
     //Product routes
     Route::controller(ProductsController::class)->prefix("/products")->group(function () {
-        Route::get("/all", "index")->name("admin.products");
-        Route::get("/add", "create")->name("admin.addproduct");
-        Route::get("/delete/{product}", "deleteProduct")->name("admin.deleteproduct");
-        Route::get("/edit/{product}", "edit")->name("admin.editproduct");
-        Route::post("/save", "store")->name("admin.saveproduct");
-        Route::post("/update/{product}", "update")->name("admin.updateproduct");
+        Route::get("/all", "index")->name("products");
+        Route::get("/add", "create")->name("addproduct");
+        Route::get("/delete/{product}", "deleteProduct")->name("deleteproduct");
+        Route::get("/edit/{product}", "edit")->name("editproduct");
+        Route::post("/save", "store")->name("saveproduct");
+        Route::post("/update/{product}", "update")->name("updateproduct");
     });
 });
 

@@ -25,14 +25,14 @@ class ProductsController extends Controller
 
     public function create()
     {
-        return view('admin.products.add-product');
+        return view('products.add-product');
     }
 
     public function store(SaveProductRequest $request)
     {
         try {
             if ($this->productRepository->createNew($request)) {
-                return redirect()->route('admin.products')->with("success", "Proizvod je dodat");
+                return redirect()->route('products')->with("success", "Proizvod je dodat");
             }
 
         } catch (\Throwable $th) {
@@ -57,7 +57,7 @@ class ProductsController extends Controller
         try {
 
             $this->productRepository->editProduct($request, $product);
-            return redirect()->route('admin.products')->with("success", "Proizvod je azuriran");
+            return redirect()->route('products')->with("success", "Proizvod je azuriran");
 
         } catch (\Throwable $th) {
             $errors = "Nemoguće azurirati proizvod";
@@ -81,7 +81,7 @@ class ProductsController extends Controller
         if (!$delete) {
             return redirect()->back()->with("error", "Nemoguće obrisati proizvod");
         }
-        return redirect()->route('admin.products')->with("success", "Proizvod je obrisan");
+        return redirect()->route('products')->with("success", "Proizvod je obrisan");
 
     }
 }

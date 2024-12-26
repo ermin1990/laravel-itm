@@ -7,7 +7,7 @@
     <div class="max-w-lg mx-auto mt-10  p-8 rounded-lg ">
         <h3 class="text-2xl font-bold text-gray-700 mb-5">Dodaj proizvod</h3>
 
-        <form action="{{route("admin.saveproduct")}}" method="post" class="flex flex-col gap-4">
+        <form action="{{route("saveproduct")}}" method="post" class="flex flex-col gap-4">
             @csrf
             <!-- Naziv proizvoda -->
             <div>
