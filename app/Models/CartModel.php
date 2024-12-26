@@ -15,4 +15,5 @@ class CartModel extends Model
         'quantity',
         'price',
     ];
+
 }

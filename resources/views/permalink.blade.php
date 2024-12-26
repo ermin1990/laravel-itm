@@ -18,7 +18,7 @@
 
             <form action="{{route('cart.add')}}" method="post">
                 @csrf
-                <input type="number" name="id" value="{{$product->id}}" hidden>
+                <input type="number" name="product_id" value="{{$product->id}}" hidden>
                 <input type="number" name="quantity" value="{{old("quantity")}}" max="{{$product->amount}}" min="1" class="w-1/3 p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Količina">
                 <p class="text-red-600 text-sm mt-1">Maksimalan broj narudžbe je {{$product->amount}}</p>
                 <button type="submit" class=" w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">Dodaj u korpu</button>

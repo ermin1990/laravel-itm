@@ -2,7 +2,9 @@
 
     <section class="bg-gray-500 p-5 my-5 rounded">
         <ul class="flex my-3 gap-3 text-white">
+            @if(\Illuminate\Support\Facades\Auth::user()->role == "admin")
             <a class=" rounded bg-gray-700 text-white p-2 hover:bg-gray-200 hover:text-black transition:ease-in-out duration-700" href="{{route("products.addproduct")}}">Dodaj proizvod</a>
+            @endif
         </ul>
     </section>
 

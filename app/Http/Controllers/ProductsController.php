@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SaveProductRequest;
 use App\Models\ProductModel;
 use App\Repositories\ProductRepository;
+use Illuminate\Support\Facades\Session;
 
 class ProductsController extends Controller
 {
@@ -26,7 +27,7 @@ class ProductsController extends Controller
 
     public function create()
     {
-        return view('products.add-product');
+        return view('admin.products.add-product');
     }
 
     public function store(SaveProductRequest $request)

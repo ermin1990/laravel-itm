@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\ProductModel;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SaveCartRequests extends FormRequest
@@ -23,8 +22,8 @@ class SaveCartRequests extends FormRequest
     public function rules(): array
     {
         return [
-            'quantity' => ['required', 'numeric', 'min:1', 'max:' . ProductModel::find($this->id)->amount],
-            'id' => ['required', 'exists:products,id']
+            'product_id' => 'required|exists:products,id',
+            'quantity' => 'required|numeric|min:1',
         ];
     }
 }
