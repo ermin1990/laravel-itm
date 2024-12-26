@@ -12,29 +12,34 @@ Route::get("/", [HomeController::class, "index"])->name("home");
 Route::get("/shop", [ShopController::class, "index"])->name("shop");
 
 //Contact routes
-Route::get("/contact", [ContactController::class, "index"])->name("contact");
-Route::post("send-contact", [ContactController::class, "sendContact"])->name("contact.send");
+Route::controller(ContactController::class)->group(function () {
+    Route::get("/contact", "index")->name("contact");
+    Route::post("send-contact", "sendContact")->name("contact.send");
+});
 
 
 //Admin routes
 Route::group(["prefix" => "admin"], function () {
 
     //Contact routes
-    Route::get("contacts", [ContactController::class, "allContacts"])->name("admin.contacts");
-    Route::get("delete-contact/{contact}", [ContactController::class, "delete"])->name("admin.deletecontact");
-    Route::get("edit-contact/{contact}", [ContactController::class, "edit"])->name("admin.editcontact");
-    Route::post("update-contact/{contact}", [ContactController::class, "update"])->name("admin.updatecontact");
+    Route::controller(ContactController::class)->group(function () {
+        Route::get("contact", "allContacts")->name("allcontacts");
+        Route::get("delete-contact/{contact}", "delete")->name("deletecontact");
+        Route::get("edit-contact/{contact}", "edit")->name("editcontact");
+        Route::post("update-contact/{contact}", "update")->name("updatecontact");
+    });
+
 
     //Product routes
-    Route::get("products", [ProductsController::class, "index"])->name("admin.products");
-    Route::get("add-product", [ProductsController::class, "create"])->name("admin.addproduct");
-    Route::post("save-product", [ProductsController::class, "store"])->name("admin.saveproduct");
-    Route::get("delete-product/{product}", [ProductsController::class, "deleteProduct"])->name("admin.deleteproduct");
-    Route::get("edit-product/{product}", [ProductsController::class, "edit"])->name("admin.editproduct");
-    Route::post("update-product/{product}", [ProductsController::class, "update"])->name("admin.updateproduct");
+    Route::controller(ProductsController::class)->group(function () {
+        Route::get("products", "index")->name("admin.products");
+        Route::get("add-product", "create")->name("admin.addproduct");
+        Route::post("save-product", "store")->name("admin.saveproduct");
+        Route::get("delete-product/{product}", "deleteProduct")->name("admin.deleteproduct");
+        Route::get("edit-product/{product}", "edit")->name("admin.editproduct");
+        Route::post("update-product/{product}", "update")->name("admin.updateproduct");
+    });
 });
-
-
 
 //About routes
 Route::view("/about", "about")->name("about");
