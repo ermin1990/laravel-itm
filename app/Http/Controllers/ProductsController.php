@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SaveProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\ProductModel;
 use App\Repositories\ProductRepository;
-use Illuminate\Support\Facades\Session;
 
 class ProductsController extends Controller
 {
@@ -54,7 +54,7 @@ class ProductsController extends Controller
 
     }
 
-    public function update(SaveProductRequest $request, $product)
+    public function update(UpdateProductRequest $request, $product)
     {
         try {
 
