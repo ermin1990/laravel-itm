@@ -21,7 +21,7 @@ class CartController extends Controller
     public function index()
     {
         $cartProducts = [];
-
+        Session::forget('ukupno');
 
         if (Session::has('products')) {
             foreach (Session::get('products') as $id => $quantity) {
@@ -31,9 +31,13 @@ class CartController extends Controller
             }
         }
 
-//        dd($cartProducts);
+        $ukupnaCijena = 0;
+        foreach ($cartProducts as $product) {
+            $ukupnaCijena += $product->price * $product->quantity;
+        }
 
-        return view('cart.index', compact('cartProducts'));
+
+        return view('cart.index', compact('cartProducts', 'ukupnaCijena'));
     }
 
     public function addToCart(SaveCartRequests $request)
