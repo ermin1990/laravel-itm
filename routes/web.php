@@ -25,7 +25,8 @@ Route::controller(CartController::class)->prefix("/cart")->name("cart.")->group(
     Route::get("/", "index")->name("index");
     Route::post("/add", "addToCart")->name("add");
     Route::get("/show", "showCart")->name("show");
-    Route::get("/delete/{cart}", "deleteCart")->name("delete");});
+    Route::put("/update/", "update")->name("update");
+    Route::get("/delete/{cart}", "delete")->name("delete");});
 
 Route::get("/", [HomeController::class, "index"])->name("home");
 

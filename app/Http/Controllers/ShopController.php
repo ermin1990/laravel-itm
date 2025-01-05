@@ -9,7 +9,6 @@ class ShopController extends Controller
 {
     public function index()
     {
-
         try {
             $products = ProductModel::all();
             return view('shop', compact("products"));

@@ -55,4 +55,10 @@ class ProductRepository
 
         return $prod;
     }
+
+    public function getMaxQuantity($productId)
+    {
+        $product = ProductModel::find($productId);
+        return $product ? $product->amount : 0;
+    }
 }
