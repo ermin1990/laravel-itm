@@ -21,7 +21,6 @@ class CartController extends Controller
     public function index()
     {
         $cartProducts = [];
-        Session::forget('ukupno');
 
         if (Session::has('products')) {
             foreach (Session::get('products') as $id => $quantity) {

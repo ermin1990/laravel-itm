@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ShoppingCartController;
 use App\Http\Middleware\AdminCheckMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/finishorder', [ShoppingCartController::class, 'fisnihOrder'])->name('finishorder');
 });
 
 //Cart routes
@@ -27,6 +29,7 @@ Route::controller(CartController::class)->prefix("/cart")->name("cart.")->group(
     Route::get("/show", "showCart")->name("show");
     Route::put("/update/", "update")->name("update");
     Route::get("/delete/{cart}", "delete")->name("delete");});
+    Route::view("/thanks", "cart.thanks")->name('thanks');
 
 Route::get("/", [HomeController::class, "index"])->name("home");
 

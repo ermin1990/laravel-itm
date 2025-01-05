@@ -1,4 +1,3 @@
-@php use Illuminate\Support\Facades\Session; @endphp
 @extends("layout")
 @section("title", "Korpa")
 @section("content")
@@ -16,7 +15,7 @@
                         <th class="text-left px-4 py-2">Količina</th>
                         <th class="text-left px-4 py-2">Cijena</th>
                         <th class="text-left px-4 py-2">Ukupno</th>
-                        <th class="text-left px-4 py-2">Akcije</th>
+                        <th class="text-left px-4 py-2"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -43,9 +42,7 @@
 
                             <td class="px-4 py-2">{{ $product->price }}</td>
                             <td class="px-4 py-2">{{ $product->price * $product->quantity }}</td>
-                            @php
-                                Session::push('ukupno', $product->price * $product->quantity);
-                            @endphp
+
                             <td class="px-4 py-2">
                                 <form method="GET" action="{{ route('cart.delete', $product->id) }}">
                                     @csrf
@@ -63,11 +60,18 @@
                 <div class="narudzba mt-6 p-4 bg-gray-200">
                     <p class="text-gray-500 flex justify-end font-bold">Ukupno: {{ $ukupnaCijena }}€</p>
 
+                    @if(\Illuminate\Support\Facades\Auth::user())
                     <div class="mt-4 flex justify-end">
-                        <a
-                            class="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600">Nastavi sa
-                            narudžbom</a>
+                        <a href="{{ route('finishorder') }}"
+                            class="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600">Naruči</a>
                     </div>
+                    @else
+                    <div class="mt-4 flex justify-end">
+                        <label class="px-2 py-2 text-xs rounded "> Da biste naručili, morate biti prijavljeni </label>
+                        <a href="{{ route('login') }}"
+                            class="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600">Login</a>
+                    </div>
+                    @endif
                 </div>
             </div>
         @else
